@@ -1,2 +1,13 @@
 /db.sqlite3
 /ll_env/
+
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+/info_sys_users/migrations/
+/inform_sys_selective_subjects/migrations/
+/uni_structure/migrations/

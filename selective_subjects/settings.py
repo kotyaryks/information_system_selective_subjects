@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'inform_sys_selective_subjects',
+    'info_sys_users',
+    'uni_structure',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
