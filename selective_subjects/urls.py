@@ -16,6 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from inform_sys_selective_subjects import views as infosys
+from uni_structure import views as user
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', user.user_login, name='login'),
+    path('logout/', user.user_logout, name='logout'),
+    path('profile/', user.user_profile, name='profile'),
+    path('registration/', user.user_register, name='register'),
+    path('registration/next/', user.student_register, name='register_next'),
+    path('', infosys.home, name='home'),
+    path('uni_subjects_list/', infosys.uni_subjects_list, name='uni_subjects_list'),
+    path('subject/', infosys.subject, name='subject'),
+    #path('subject_view/', infosys.subject_view, name='subject_view'),
+    path('subject_view/<int:subject_id>/', infosys.subject_view, name='subject_view'),
 ]

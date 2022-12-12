@@ -9,6 +9,22 @@ class Subject(models.Model):
         ('m', 'другий(магістерський)'),
         ('p', 'третій(освітньо-науковий)'),
     )
+    PART = (
+        ('u', 'університетська'),
+        ('f', 'факультетська'),
+    )
+
+    part = models.CharField(
+        "Університетська\факультетська",
+        max_length=1,
+        choices=PART,
+        default='b',
+    )
+    code = models.CharField(
+        "Код дисципліни",
+        max_length=10,
+        blank=False
+    )
     name = models.CharField(
         "Назва дисципліни",
         max_length=100,
@@ -24,14 +40,14 @@ class Subject(models.Model):
         verbose_name="Кафедра",
         on_delete=models.CASCADE,
     )
-    lecturer = models.ManyToManyField(Lecturer, blank=True)
+    lecturer = models.ManyToManyField(Lecturer,verbose_name="П.І.П. НПП (за можливості)", blank=True)
     level = models.CharField(
         "Рівень ВО",
         max_length=1,
         choices=LEVEL,
         default='b',
     )
-    semester = models.ManyToManyField(Semester, blank=False)
+    semester = models.ManyToManyField(Semester,verbose_name="Семестр", blank=False)
     language = models.CharField(
         "Мова викладання",
         blank=False,
@@ -69,7 +85,7 @@ class Subject(models.Model):
         blank=False,
         max_length=150,
     )
-    educational_activities_type = models.CharField(
+    semester_control_type = models.CharField(
         "Види навчальних занять (лекції, практичні, семінарські, лабораторні заняття тощо",
         blank=False,
         max_length=100,
@@ -83,7 +99,7 @@ class Subject(models.Model):
     min_capacity = models.PositiveSmallIntegerField("Мінімальна кількість здобувачів", blank=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.code} {self.name}"
 
     class Meta:
         verbose_name = "Вибіркова дисципліна"

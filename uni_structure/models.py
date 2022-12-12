@@ -88,6 +88,7 @@ class AcademicYear(models.Model):
         blank=False,
         max_length=9,
     )
+    deadline = models.DateField(verbose_name="Термін вибору дисциплін", auto_now=False)
 
     def __str__(self):
         return self.text

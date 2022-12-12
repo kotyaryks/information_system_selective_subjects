@@ -1,0 +1,60 @@
+{% extends 'inform_sys_selective_subjects/base.html' %}
+{% block title %}ІC “Вибіркові дисципліни”{% endblock title %}
+
+{% block content %}
+    <div class="container p-3 my-3 border">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>Прізвище</td>
+                <td>{{ student.last_name }}</td>
+            </tr>
+            <tr>
+                <td>Ім'я</td>
+                <td>{{ student.first_name }}</td>
+            </tr>
+
+            <tr>
+                <td>По батькові</td>
+                <td>{{ student.patronymic }}</td>
+            </tr>
+            <tr>
+                <td>Електронна пошта</td>
+                <td>{{ email }}</td>
+            </tr>
+            <tr>
+                <td>Рівень ВО</td>
+                {% if student.level == 'b' %}
+                    <td> Перший(бакалаврський)</td>
+                {% elif student.level == 'm' %}
+                    <td> Другий(магістерський)</td>
+                {% elif student.level == 'p' %}
+                    <td> Tретій(освітньо-науковий)</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Спеціальність</td>
+                <td>{{ student.majoring }}</td>
+            </tr>
+            </tbody>
+        </table>
+        {% for selected_subjects in selected_subjects_list %}
+            <div class="card">
+                <div class="card-header">
+                    {{ selected_subjects.academic_year }}
+                </div>
+                <table class="table">
+                    <tbody>
+                    {% for subject in selected_subjects.subjects.all %}
+                        <tr>
+                            <td><a href="{% url 'subject_view' subject.id %}">
+                                {{ subject }}
+                            </a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

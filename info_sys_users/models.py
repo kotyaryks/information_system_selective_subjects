@@ -1,13 +1,18 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 from uni_structure.models import Department, Majoring
 
 class Lecturer(models.Model):
-    username = models.OneToOneField(
+    user = models.OneToOneField(
         User,
-        verbose_name="Ім'я користувача",
+        verbose_name="Користувач",
         on_delete=models.CASCADE,
-        blank=False
+        blank=True,
+        null=True,
+        related_name="lecturer",
     )
     last_name = models.CharField(
         "Прізвище",
@@ -45,11 +50,12 @@ class Student(models.Model):
         ('p', 'третій(освітньо-науковий)'),
     )
 
-    username = models.OneToOneField(
+    user = models.OneToOneField(
         User,
-        verbose_name="Ім'я користувача",
+        verbose_name="Користувач",
         on_delete=models.CASCADE,
-        blank=False
+        blank=True,
+        null=True,
     )
     last_name = models.CharField(
         "Прізвище",
@@ -84,4 +90,3 @@ class Student(models.Model):
     class Meta:
         verbose_name = "Студента"
         verbose_name_plural = "Студенти"
-
