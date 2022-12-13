@@ -18,7 +18,7 @@ class Subject(models.Model):
         "Університетська\факультетська",
         max_length=1,
         choices=PART,
-        default='b',
+        default='u',
     )
     code = models.CharField(
         "Код дисципліни",

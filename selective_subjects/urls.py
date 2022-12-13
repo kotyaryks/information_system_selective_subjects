@@ -28,7 +28,8 @@ urlpatterns = [
     path('registration/next/', user.student_register, name='register_next'),
     path('', infosys.home, name='home'),
     path('uni_subjects_list/', infosys.uni_subjects_list, name='uni_subjects_list'),
+    path('faculty_list/', infosys.faculty_list, name='faculty_list'),
+    path('faculty_subjects_list/<int:faculty_id>/', infosys.faculty_subjects_list, name='faculty_subjects_list'),
     path('subject/', infosys.subject, name='subject'),
-    #path('subject_view/', infosys.subject_view, name='subject_view'),
     path('subject_view/<int:subject_id>/', infosys.subject_view, name='subject_view'),
 ]

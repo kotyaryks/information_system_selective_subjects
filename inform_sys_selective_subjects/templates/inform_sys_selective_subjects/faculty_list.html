@@ -1,0 +1,14 @@
+{% extends 'inform_sys_selective_subjects/base.html' %}
+{% block title %}ІC “Вибіркові дисципліни”{% endblock title %}
+
+{% block content %}
+    <div class="container p-3 my-3 border ">
+        <ul class="list-group">
+            {% for faculty in faculty_list %}
+                <li class="list-group-item border"><a href="{% url 'faculty_subjects_list' faculty.id %}">
+                    {{ faculty.name }}
+                </a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}
