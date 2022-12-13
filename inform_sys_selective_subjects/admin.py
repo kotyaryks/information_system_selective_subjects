@@ -13,5 +13,6 @@ class SubjectAdmin(admin.ModelAdmin):
 class SelectedSubjectsByStudentListAdmin(admin.ModelAdmin):
     search_fields = ['students', ]
     list_filter = ['subjects','academic_year',]
+    filter_horizontal = ['subjects']
 
 # Register your models here.

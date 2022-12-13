@@ -40,14 +40,14 @@ class Subject(models.Model):
         verbose_name="Кафедра",
         on_delete=models.CASCADE,
     )
-    lecturer = models.ManyToManyField(Lecturer,verbose_name="П.І.П. НПП (за можливості)", blank=True)
+    lecturer = models.ManyToManyField(Lecturer, verbose_name="П.І.П. НПП (за можливості)", blank=True)
     level = models.CharField(
         "Рівень ВО",
         max_length=1,
         choices=LEVEL,
         default='b',
     )
-    semester = models.ManyToManyField(Semester,verbose_name="Семестр", blank=False)
+    semester = models.ManyToManyField(Semester, verbose_name="Семестр", blank=False)
     language = models.CharField(
         "Мова викладання",
         blank=False,
@@ -57,35 +57,35 @@ class Subject(models.Model):
     preconditions = models.TextField(
         "Пререквізити (передумови вивчення дисципліни)",
         blank=False,
-        max_length=120,
+        max_length=250,
         default="Немає"
     )
     what_is_being_studied = models.TextField(
         "Що буде вивчатися",
         blank=False,
-        max_length=150,
+        max_length=250,
     )
     why_should_be_studied = models.TextField(
         "Чому це цікаво/треба вивчати",
         blank=False,
-        max_length=150,
+        max_length=250,
     )
     what_can_be_learned = models.TextField(
         "Чого можна навчитися (результати навчання)",
         blank=False,
-        max_length=180,
+        max_length=250,
     )
     how_to_use = models.TextField(
         "Як можна користуватися набутими знаннями і уміннями (компетентності)",
         blank=False,
-        max_length=150,
+        max_length=250,
     )
     information_provision = models.TextField(
         "Інформаційне забезпечення",
         blank=False,
-        max_length=150,
+        max_length=250,
     )
-    semester_control_type = models.CharField(
+    educational_activities_type = models.CharField(
         "Види навчальних занять (лекції, практичні, семінарські, лабораторні заняття тощо",
         blank=False,
         max_length=100,

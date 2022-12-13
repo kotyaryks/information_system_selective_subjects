@@ -4,97 +4,101 @@
 {% block content %}
     <div class="container p-3 my-3 border">
         <form>
+
             <div class="form-group">
                 <label for="exampleFormControlInput1">Код дисципліни</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1">
+                <input type="text" class="form-control" name="code">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Назва дисципліни</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1">
+                <input type="text" class="form-control" name="name">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect2">Рекомендується для галузі знань (спеціальності, освітньої
                     програми)</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select multiple class="form-control" name="majoring">
+                    {% for majoring in majorings %}
+                        <option>{{ majoring }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Університетська/факультетська:</label>
+                <select class="form-control" name="department">
+                    <option>університетська</option>
+                    <option>факультетська</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Кафедра</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select class="form-control" name="department">
+                    {% for department in departments %}
+                        <option>{{ department }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Рівень ВО</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select class="form-control" name="level">
+                    <option>перший(бакалаврський)</option>
+                    <option>другий(магістерський)</option>
+                    <option>третій(освітньо-науковий)</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect2">Семестр (утримуйти Ctrl або Shift, щоб обрати більш ніж
                     1)</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select multiple class="form-control" name="semester">
+                    {% for semester in semesters %}
+                        <option>{{ semester }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Мова викладання</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1">
+                <input type="text" class="form-control" name="language">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Пререквізити (передумови вивчення дисципліни)</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="preconditions" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Що буде вивчатися</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="what_is_being_studied" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Чому це цікаво/треба вивчати</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="why_should_be_studied" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Чого можна навчитися (результати навчання)</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="what_can_be_learned" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Як можна користуватися набутими знаннями і уміннями
                     (компетентності)</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="how_to_use" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Інформаційне забезпечення</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="information_provision" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Види навчальних занять (лекції, практичні, семінарські,
                     лабораторні заняття тощо</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1">
+                <input type="text" class="form-control" name="educational_activities_type">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Вид семестрового контролю</label>
+                <input type="text" class="form-control" name="semester_control_type">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Максимальна кількість здобувачів</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1">
+                <input type="number" class="form-control" name="max_capacity">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Мінімальна кількість здобувачів</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1">
+                <input type="number" class="form-control" name="min_capacity">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">Зберегти</button>

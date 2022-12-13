@@ -1,23 +1,23 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
 
-from uni_structure.models import Department, Faculty, Majoring
+from uni_structure.models import Department, Faculty, Majoring, Semester
 from .models import Subject
 
 
 def home(request):
-    subjects = Subject.objects.all()
-    context = {
-        'subjects_list': subjects,
-    }
-    template = loader.get_template('inform_sys_selective_subjects/index.html')
-    return HttpResponse(template.render(context, request))
+    return render(request, 'inform_sys_selective_subjects/index.html')
 
 
 def subject(request):
-    subjects = Subject.objects.all()
+    majorings = Majoring.objects.all()
+    departments = Department.objects.all()
+    semesters = Semester.objects.all()
     context = {
-        'subjects_list': subjects,
+        'majorings': majorings,
+        'departments': departments,
+        'semesters': semesters,
     }
     template = loader.get_template('inform_sys_selective_subjects/subject.html')
     return HttpResponse(template.render(context, request))
