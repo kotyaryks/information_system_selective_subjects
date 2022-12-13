@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template import loader
 from django.contrib.auth.forms import UserCreationForm
 from django.views.decorators.csrf import csrf_exempt
@@ -46,26 +46,33 @@ def user_logout(request):
 
 
 def user_profile(request):
-    if Student.objects.get(user_id=request.user.id) is not None:
-        student = Student.objects.get(user_id=request.user.id)
-        selected_subjects_list = SelectedSubjectsByStudentList.objects.order_by('students_id')
-        email = request.user.username
-        context = {
-            'student': student,
-            'selected_subjects_list': selected_subjects_list,
-            'email': email,
-        }
-        template = loader.get_template('inform_sys_selective_subjects/student_profile.html')
-    elif Lecturer.objects.get(user_id=request.user.id) is not None:
-        lecturer = Lecturer.objects.get(user_id=request.user.id)
-        subjects_list = Subject.objects.order_by(lecturer_id=lecturer.id)
-        context = {
-            'lecturer': lecturer,
-            'subjects_list': subjects_list,
-        }
+    if Student.objects.filter(user_id=request.user.id):
+        try:
+            student = Student.objects.get(user_id=request.user.id)
+            selected_subjects_list = SelectedSubjectsByStudentList.objects.order_by('students_id')
+            email = request.user.username
+            context = {
+                'student': student,
+                'selected_subjects_list': selected_subjects_list,
+                'email': email,
+            }
+            template = loader.get_template('inform_sys_selective_subjects/student_profile.html')
+        except Student.DoesNotExist:
+            pass
+    elif Lecturer.objects.filter(user_id=request.user.id):
+        try:
+            lecturer = Lecturer.objects.get(user_id=request.user.id)
+            subjects_list = Subject.objects.filter(lecturer=lecturer)
+            context = {
+                'lecturer': lecturer,
+                'subjects_list': subjects_list,
+            }
+            template = loader.get_template('inform_sys_selective_subjects/lecturer_profile.html')
+        except Lecturer.DoesNotExist:
+            pass
+
     else:
         return redirect('register_next')
-    template = loader.get_template('inform_sys_selective_subjects/student_profile.html')
     return HttpResponse(template.render(context, request))
 
 

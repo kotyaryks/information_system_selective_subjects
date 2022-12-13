@@ -1,0 +1,47 @@
+{% extends 'inform_sys_selective_subjects/base.html' %}
+{% block title %}ІC “Вибіркові дисципліни”{% endblock title %}
+
+{% block content %}
+    <div class="container p-3 my-3 border">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>Прізвище</td>
+                <td>{{ lecturer.last_name }}</td>
+            </tr>
+            <tr>
+                <td>Ім'я</td>
+                <td>{{ lecturer.first_name }}</td>
+            </tr>
+
+            <tr>
+                <td>По батькові</td>
+                <td>{{ lecturer.patronymic }}</td>
+            </tr>
+            <tr>
+                <td>Кафедра</td>
+                <td>{{ lecturer.department }}</td>
+            </tr>
+            </tbody>
+        </table>
+        {% for subject in subjects_list %}
+            <div class="card">
+                <div class="card-header">
+                    Предмети
+                </div>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td><a href="{% url 'subject_view' subject.id %}">
+                            {{ subject }}
+                        </a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            <a type="submit" class="btn btn-primary p-3 my-3 btn-block" href="{% url 'subject'  %}">Додати новий</a>
+        </div>
+    </div>
+{% endblock content %}

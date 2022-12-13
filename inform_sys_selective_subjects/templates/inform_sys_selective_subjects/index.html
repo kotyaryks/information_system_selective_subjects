@@ -2,6 +2,6 @@
 {% block title %}ІC “Вибіркові дисципліни”{% endblock title %}
 
 {% block content %}
-    <button type="button" class="btn btn-outline-primary btn-lg btn-block" style="height: 44vh;">Університетський вибірковий каталог</button>
-    <button type="button" class="btn btn-outline-primary btn-lg btn-block " style="height: 44vh;">Факультетський вибірковий каталог</button>
+    <a type="button" class="btn btn-outline-primary btn-lg btn-block" style="height: 44vh;"href="{% url 'uni_subjects_list' %}">Університетський вибірковий каталог</a>
+    <a type="button" class="btn btn-outline-primary btn-lg btn-block " style="height: 44vh;" href="{% url 'faculty_list' %}">Факультетський вибірковий каталог</a>
 {% endblock content %}

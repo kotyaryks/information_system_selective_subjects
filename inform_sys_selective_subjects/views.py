@@ -65,21 +65,16 @@ def faculty_list(request):
 
 def faculty_subjects_list(request, faculty_id):
     departments = Department.objects.filter(faculty_id=faculty_id)
-    print(departments)
 
     subjects_list = []
 
     for department in departments:
         subjects_list.append(Subject.objects.filter(part='f').filter(department_id=department.id))
 
-    print(subjects_list)
-
     majorings_list = []
 
     for department in departments:
         majorings_list.append(Majoring.objects.filter(department_id=department.id))
-
-    print(majorings_list)
 
     context = {
         'majorings_list': majorings_list,
