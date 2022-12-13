@@ -1,0 +1,63 @@
+{% extends 'inform_sys_selective_subjects/base.html' %}
+{% load static %}
+<head>
+    {% block title %}Реєстрація{% endblock title %}
+    {% block content %}
+        <meta charset="UTF-8">
+        <link rel="stylesheet"
+              href="{% static 'inform_sys_selective_subjects/../../static/inform_sys_selective_subjects/css/registration.css' %}">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        </head>
+        <style>
+            body {
+                background: #0F8DC8;
+            }
+        </style>
+        <body>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-offset-3 col-md-6">
+                    <form class="form-horizontal" method="POST">
+                        {% csrf_token %}
+                        <span class="heading">Реєстрація</span>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="last_name"
+                                   placeholder="Прізвище">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="first_name"
+                                   placeholder="Ім'я">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="patronymic"
+                                   placeholder="По-батькові">
+                        </div>
+                        <div class="form-group">
+                            <select name="majoring" class="form-control">
+                                {% for majoring in majorings_list %}
+                                    <option value="{{ majoring.id }}">{{ majoring }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="level" class="form-control">
+                                <option value="b">Перший(бакалаврський)</option>
+                                <option value="m">Другий(магістерський)</option>
+                                <option value="p">Третій (освітньо-науковий)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">Зареєструватися</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+        </body>
+        </html>
+    {% endblock content %}

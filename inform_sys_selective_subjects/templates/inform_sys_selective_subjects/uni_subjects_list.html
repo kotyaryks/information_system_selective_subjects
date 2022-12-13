@@ -1,0 +1,33 @@
+{% extends 'inform_sys_selective_subjects/base.html' %}
+{% block title %}ІC “Вибіркові дисципліни”{% endblock title %}
+
+{% block content %}
+    <div class="container p-3 my-3 border">
+        <div class="card">
+            {% for faculty in faculty_list %}
+                <div class="card-header">
+                    {{ faculty.name }}
+                </div>
+                {% for departament in department_list %}
+                    {% if departament.faculty_id == faculty.id %}
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                {% for subject in subjects_list %}
+                                    {% if subject.department_id == departament.id %}
+                                        <td><input class="form-check-input" type="checkbox" value=""
+                                                   id="flexCheckDefault"></td>
+                                        <td><a href="{% url 'subject_view' subject.id %}">
+                                            {{ subject }}
+                                        </a></td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

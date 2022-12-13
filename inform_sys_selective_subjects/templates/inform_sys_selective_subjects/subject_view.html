@@ -1,0 +1,100 @@
+{% extends 'inform_sys_selective_subjects/base.html' %}
+{% block title %}ІC “Вибіркові дисципліни”{% endblock title %}
+
+{% block content %}
+
+    <div class="container p-3 my-3 border">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>Код дисципліни</td>
+                <td>{{ subject.code }}</td>
+            </tr>
+            <tr>
+                <td>Назва дисципліни</td>
+                <td>{{ subject.name }}</td>
+            </tr>
+            <tr>
+                <td>Рекомендується для галузі знань (спеціальності, освітньої програми)</td>
+                <td>
+                    {% for majoring in subject.majoring.all %}
+                        {{ majoring }},
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td>Кафедра</td>
+                <td>{{ subject.department }}</td>
+            </tr>
+
+            <tr>
+                <td>Рівень ВО</td>
+                {% if subject.level == 'b' %}
+                    <td> Перший(бакалаврський)</td>
+                {% elif subject.level == 'm' %}
+                    <td> Другий(магістерський)</td>
+                {% elif subject.level == 'p' %}
+                    <td> Tретій(освітньо-науковий)</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Семестр</td>
+                <td>
+                    {% for semester in subject.semester.all %}
+                        {{ semester }},
+                    {% endfor %}
+                </td>
+            </tr>
+
+            <tr>
+                <td>Мова викладання</td>
+                <td>{{ subject.language }}</td>
+            </tr>
+            <tr>
+                <td>Пререквізити (передумови вивчення дисципліни)</td>
+                <td>{{ subject.preconditions }}</td>
+            </tr>
+            <tr>
+                <td>Що буде вивчатися</td>
+                <td>{{ subject.what_is_being_studied }}</td>
+            </tr>
+            <tr>
+                <td>Чому це цікаво/треба вивчати</td>
+                <td>{{ subject.why_should_be_studied }}</td>
+            </tr>
+
+            <tr>
+                <td>Чого можна навчитися (результати навчання)</td>
+                <td>{{ subject.what_can_be_learned }}</td>
+            </tr>
+            <tr>
+                <td>Як можна користуватися набутими знаннями і уміннями (компетентності)</td>
+                <td>{{ subject.how_to_use }}</td>
+            </tr>
+            <tr>
+                <td>Інформаційне забезпечення</td>
+                <td>{{ subject.information_provision }}</td>
+            </tr>
+
+            <tr>
+                <td>Види навчальних занять (лекції, практичні, семінарські, лабораторні заняття тощо</td>
+                <td>{{ subject.educational_activities_type }}</td>
+            </tr>
+
+            <tr>
+                <td>Вид семестрового контролю</td>
+                <td>{{ subject.semester_control_type }}</td>
+            </tr>
+            <tr>
+                <td>Максимальна кількість здобувачів</td>
+                <td>{{ subject.max_capacity }}</td>
+            </tr>
+            <tr>
+                <td>Мінімальна кількість здобувачів</td>
+                <td>{{ subject.min_capacity }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

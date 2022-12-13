@@ -1,0 +1,7 @@
+{% extends 'inform_sys_selective_subjects/base.html' %}
+{% block title %}ІC “Вибіркові дисципліни”{% endblock title %}
+
+{% block content %}
+    <a type="button" class="btn btn-outline-primary btn-lg btn-block" style="height: 44vh;"href="{% url 'uni_subjects_list' %}">Університетський вибірковий каталог</a>
+    <a type="button" class="btn btn-outline-primary btn-lg btn-block " style="height: 44vh;" href="{% url 'faculty_list' %}">Факультетський вибірковий каталог</a>
+{% endblock content %}
